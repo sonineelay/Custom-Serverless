@@ -1,0 +1,16 @@
+functions:
+  user-service:
+    handler: services/user-service/src/handler/route.handler
+    layers:
+      - { Ref: SharedLambdaLayer }
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
+    package:
+      individually: true
+      patterns:
+        - "!**" # exclude everything
+        - "services/user-service/**" # include only this service
+        - "!services/user-service/serverless.yml"

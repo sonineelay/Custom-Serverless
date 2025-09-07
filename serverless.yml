@@ -1,0 +1,45 @@
+service: arch-single-own
+
+provider:
+  name: aws
+  # region: us-east-1
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'dev'} # ✅ default stage
+  environment:
+    NODE_PATH: ${self:custom.resolvedNodePath.${self:provider.stage}, self:custom.resolvedNodePath.default}
+    DB_HOST: ${env:DB_HOST}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_NAME: ${env:DB_NAME}
+    DB_PORT: ${env:DB_PORT}
+
+    TMPDIR: ${self:custom.stageEnvs.${self:provider.stage}.TMPDIR, ''}
+    TEMP: ${self:custom.stageEnvs.${self:provider.stage}.TEMP, ''}
+    TMP: ${self:custom.stageEnvs.${self:provider.stage}.TMP, ''}
+
+layers:
+  shared:
+    path: layers
+    name: ${self:service}-shared
+    description: Shared utilities for DB and helpers
+    compatibleRuntimes:
+      - nodejs20.x
+
+functions:
+  - ${file(./services/user-service/serverless.yml):functions}
+  # - ${file(./services/course-service/serverless.yml):functions}
+
+plugins:
+  - serverless-offline
+
+custom:
+  resolvedNodePath:
+    local: ./layers/nodejs/node_modules
+    default: /opt/nodejs/node_modules
+
+  stageEnvs:
+    local:
+      TMPDIR: ./temp
+      TEMP: ./temp
+      TMP: ./temp
+    default: {}

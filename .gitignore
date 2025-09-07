@@ -1,0 +1,7 @@
+# Node
+/layers/nodejs/node_modules
+/node_modules
+# Ignore environment variable files for security reasons
+.env
+/.serverless
+/temp

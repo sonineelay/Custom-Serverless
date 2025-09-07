@@ -1,0 +1,29 @@
+name: Deploy Serverless
+
+on:
+  push:
+    branches:
+      - main # change if different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::771743056881:role/ServerlessPermissions
+          aws-region: us-east-1 # or your target region
+
+      - name: Install dependencies
+        run: npm install # or yarn install
+
+      - name: Deploy with Serverless Framework
+        run: npx serverless deploy

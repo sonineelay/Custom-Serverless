@@ -1,0 +1,26 @@
+{
+  "name": "ksv-lms-student-api",
+  "version": "0.0.0",
+  "description": "This is the backend microservice API for only student portal ",
+  "type": "commonjs",
+  "scripts": {
+    "init": "npm run setup && npm run install:layer",
+    "setup:auth": "sls login",
+    "deploy:local": "dotenv -- sls offline --stage local",
+    "deploy:dev": "dotenv -- sls deploy --stage dev",
+    "deploy:qa": "dotenv -- sls deploy --stage qa",
+    "deploy:prod": "dotenv -- sls deploy --stage prod",
+    "deploy:function:dev": "dotenv -- sls deploy function --stage dev  -f ",
+    "deploy:function:qa": "dotenv -- sls deploy function --stage qa  -f ",
+    "deploy:function:prod": "dotenv -- sls deploy function --stage prod  -f ",
+    "add:package": "npm install --prefix layers/nodejs",
+    "remove:package": "npm uninstall --prefix layers/nodejs",
+    "setup": "npm install --save-dev dotenv-cli serverless serverless-offline",
+    "install:layer": "cd layers/nodejs && npm install && cd ../.."
+  },
+  "devDependencies": {
+    "dotenv-cli": "^10.0.0",
+    "serverless": "^4.18.2",
+    "serverless-offline": "^14.4.0"
+  }
+}
