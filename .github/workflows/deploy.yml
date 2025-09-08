@@ -22,8 +22,8 @@ jobs:
           role-to-assume: arn:aws:iam::771743056881:role/ServerlessPermissions
           aws-region: us-east-1 # or your target region
 
-      - name: Install dependencies
-        run: npm install # or yarn install
+      - name: Install only layers dependencies
+        run: npm install --prefix layers/nodejs # or yarn install
 
       - name: Deploy with Serverless Framework
         env:
