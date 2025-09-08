@@ -27,6 +27,6 @@ jobs:
 
       - name: Deploy with Serverless Framework
         env:
-          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-          SERVERLESS_LICENSE_KEY: ${{ secrets.SERVERLESS_LICENSE_KEY }}
+          SERVERLESS_ACCESS_KEY: AKYX7jMDdqdhHRuJB8KkKK2rBKITCSO5xTefAHcC5qMWV
+          SERVERLESS_LICENSE_KEY: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdJZCI6IjA5NDlkZDFkLTYxN2EtNGEyMi05MWIwLTI0ZTFiMjMxZmVmMiIsImlhdCI6MTc1NzI2ODQwNiwiZXhwIjoxNzg4ODA0NDA2LCJpc3MiOiJhcHAuc2VydmVybGVzcy5jb20ifQ.QCw3sVeeeMqfwrVnJMoLnnqjO6JwUF9GmhVRh6UBRVXh1yWBomzshNw9ieAOrWAa_4Dok_AhiDGQ54eLVQfQh_Mo8QDkcj2VVdoB_7XlzMWA2dmD9ofT8OGENHoJxax7_Y5utv7QjlOqkfywU8tNt0EtDFxN1CuZVU9iwV7EHoGqAUXLi9znGQgPyCiGmkOoBqCRBYc3oH_8Gbp-1xCmWClLkz3cq81u66tdpMVBABHV5pkF5riWu3cRtDU-bXlwko5jLiV7oL9-vGwUxXPlP2Oz28lwp8iX-48yyi4b9-nhfNYCtQu-341RmIcoIR0GXnmtyaErj5XWYJynTrOGFA
         run: npx serverless deploy
